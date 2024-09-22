@@ -1,0 +1,270 @@
+:root {
+    --primary-color: #ff9900;
+    --secondary-color: #333366;
+    --background-color: #ffffff;
+    --text-color: #333333;
+}
+
+.dark-theme {
+    --background-color: #333333;
+    --text-color: #ffffff;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    transition: background-color 0.3s, color 0.3s;
+}
+
+header {
+    background-color: var(--background-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.search-bar {
+    display: flex;
+    flex-grow: 1;
+    margin: 0 2rem;
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-right: none;
+}
+
+.search-bar button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.user-actions button {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    margin-left: 1rem;
+    cursor: pointer;
+    color: var(--text-color);
+}
+
+nav ul {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    background-color: var(--secondary-color);
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    padding: 1rem;
+    display: block;
+}
+
+nav ul li a:hover, nav ul li a.active {
+    background-color: var(--primary-color);
+}
+
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    width: 25px;
+    height: 3px;
+    background-color: var(--text-color);
+    margin: 5px 0;
+}
+
+main {
+    padding: 2rem;
+}
+
+.hero {
+    background-color: #f0f0f0;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.hero h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.hero button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 2rem;
+}
+
+.product {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    text-align: center;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+
+.exciting-deals {
+    margin: 2rem 0;
+    text-align: center;
+}
+
+.exciting-deals img {
+    max-width: 100%;
+    height: auto;
+}
+
+.featured-categories {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 2rem;
+}
+
+.category {
+    text-align: center;
+}
+
+.category img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 2rem;
+}
+
+.footer-sections {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.footer-sections > div {
+    flex: 1;
+    min-width: 200px;
+    margin-bottom: 1rem;
+}
+
+.footer-sections h3 {
+    margin-bottom: 1rem;
+}
+
+.footer-sections ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.footer-sections ul li a {
+    color: white;
+    text-decoration: none;
+}
+
+.footer-newsletter form {
+    display: flex;
+    margin-bottom: 1rem;
+}
+
+.footer-newsletter input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    border: none;
+}
+
+.footer-newsletter button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5rem;
+    margin-right: 1rem;
+}
+
+.footer-bottom {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+.payment-methods img {
+    max-width: 200px;
+}
+
+#cart {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 300px;
+    height: 100%;
+    background-color: var(--background-color);
+    padding: 1rem;
+    box-shadow: -2px 0 5px rgba(0,0,0,0.1);
+    overflow-y: auto;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .top-header {
+        flex-wrap: wrap;
+    }
+    
+    .search-bar {
+        order: 3;
+        width: 100%;
+        margin: 1rem 0 0 0;
+    }
+    
+    nav ul {
+        display: none;
+    }
+    
+    .hamburger-menu {
+        display: block;
+    }
+    
+    .footer-sections {
+        flex-direction: column;
+    }
+}
