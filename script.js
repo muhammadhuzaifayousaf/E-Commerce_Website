@@ -21,18 +21,29 @@ const checkoutButton = document.getElementById("checkoutButton");
 const toggleThemeButton = document.getElementById("toggleTheme");
 const hamburgerMenu = document.querySelector(".hamburger-menu");
 const navMenu = document.querySelector("nav ul");
+const searchInput = document.querySelector(".search-bar input");
+const searchButton = document.querySelector(".search-bar button");
+const closeCartButton = document.getElementById("closeCart");
 
 // Display products
-function displayProducts() {
-    productsContainer.innerHTML = products.map(product => `
+function displayProducts(productList = products) {
+    productsContainer.innerHTML = productList.map(product => `
         <div class="product">
             <img src="${product.image}" alt="${product.name}">
             <h3>${product.name}</h3>
             <p>$${product.price.toFixed(2)}</p>
             ${product.discount ? `<p class="discount">-${product.discount}% OFF</p>` : ''}
-            <button onclick="addToCart(${product.id})">Add to Cart</button>
+            <button class="add-to-cart" data-id="${product.id}">Add to Cart</button>
         </div>
     `).join("");
+
+    // Add event listeners to "Add to Cart" buttons after displaying products
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+        button.addEventListener('click', function() {
+            const productId = parseInt(this.getAttribute('data-id'));
+            addToCart(productId);
+        });
+    });
 }
 
 // Add product to cart
@@ -46,8 +57,7 @@ function addToCart(productId) {
 function updateCart() {
     cartCount.textContent = cart.length;
     cartItems.innerHTML = cart.map(item => `
-        <li>
-            ${item.name} - $${item.price.toFixed(2)}
+        <li>${item.name} - $${item.price.toFixed(2)}
             <button onclick="removeFromCart(${cart.indexOf(item)})">Remove</button>
         </li>
     `).join("");
@@ -62,7 +72,17 @@ function removeFromCart(index) {
 
 // Toggle cart visibility
 cartButton.addEventListener("click", () => {
-    cartContainer.classList.toggle("hidden");
+    if (cartContainer.classList.contains("hidden")) {
+        cartContainer.classList.remove("hidden");
+        cartContainer.classList.add("show");
+    } else {
+        cartContainer.classList.remove("show");
+        cartContainer.classList.add("hidden");
+    }
+});
+
+closeCartButton.addEventListener("click", () => {
+    cartContainer.classList.remove("show");
 });
 
 // Checkout
@@ -70,7 +90,7 @@ checkoutButton.addEventListener("click", () => {
     alert(`Thank you for your purchase! Total: $${cartTotal.textContent}`);
     cart = [];
     updateCart();
-    cartContainer.classList.add("hidden");
+    cartContainer.classList.remove("show");
 });
 
 // Toggle theme
@@ -90,20 +110,14 @@ document.querySelectorAll("nav ul li a").forEach(link => {
     });
 });
 
-// Initialize
-displayProducts();
-updateCart();
-
-// Responsive design
-window.addEventListener("resize", () => {
-    if (window.innerWidth > 768) {
-        navMenu.classList.remove("active");
-    }
-});
-
 // Search functionality
-const searchInput = document.querySelector(".search-bar input");
-const searchButton = document.querySelector(".search-bar button");
+function performSearch() {
+    const searchTerm = searchInput.value.toLowerCase();
+    const filteredProducts = products.filter(product => 
+        product.name.toLowerCase().includes(searchTerm)
+    );
+    displayProducts(filteredProducts);
+}
 
 searchButton.addEventListener("click", performSearch);
 searchInput.addEventListener("keypress", (e) => {
@@ -112,22 +126,13 @@ searchInput.addEventListener("keypress", (e) => {
     }
 });
 
-function performSearch() {
-    const searchTerm = searchInput.value.toLowerCase();
-    const filteredProducts = products.filter(product => 
-        product.name.toLowerCase().includes(searchTerm)
-    );
-    displayFilteredProducts(filteredProducts);
-}
+// Responsive design: reset menu for larger screens
+window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) {
+        navMenu.classList.remove("active");
+    }
+});
 
-function displayFilteredProducts(filteredProducts) {
-    productsContainer.innerHTML = filteredProducts.map(product => `
-        <div class="product">
-            <img src="${product.image}" alt="${product.name}">
-            <h3>${product.name}</h3>
-            <p>$${product.price.toFixed(2)}</p>
-            ${product.discount ? `<p class="discount">-${product.discount}% OFF</p>` : ''}
-            <button onclick="addToCart(${product.id})">Add to Cart</button>
-        </div>
-    `).join("");
-}
+// Initialize
+displayProducts();
+updateCart();
