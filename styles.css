@@ -3,7 +3,7 @@
     --secondary-color: #333366;
     --background-color: #ffffff;
     --text-color: #333333;
-    --button-hover-color: #ff6600;
+    --button-hover-color: #333366;
 }
 
 .dark-theme {
@@ -136,7 +136,7 @@ main {
 }
 
 .hero {
-    background-image: url('image.jpg');
+    background-image: url('images/hero.jpg');
     background-color: #f0f0f0;
     background-size: cover;
     background-position: center;
@@ -147,8 +147,8 @@ main {
     justify-content: center;
     margin-bottom: 2rem;
     border-radius: 15px;
-    position: relative; /* Ensure content is positioned relative to the background */
-    overflow: hidden; /* Prevent content overflow */
+    position: relative;
+    overflow: hidden;
 }
 
 .hero h2 {
@@ -156,13 +156,14 @@ main {
     margin-bottom: 1rem;
     font-weight: 700;
     color: white;
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow for readability */
-    z-index: 1; /* Keep text above the background */
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    z-index: 1;
 }
 
 .hero p {
     font-size: 1.2rem;
-    color: white;
+    font-weight: bold;
+    color: #333366;
     margin-bottom: 30px;
 }
 
@@ -361,7 +362,6 @@ footer {
     display: none;
 }
 
-/* Add-to-Cart and Checkout Buttons */
 .add-to-cart, #checkoutButton {
     background-color: var(--primary-color);
     color: white;
@@ -378,12 +378,10 @@ footer {
     transform: scale(1.05);
 }
 
-/* Remove Accepted Payment Methods */
 .payment-methods {
     display: none;
 }
 
-/* Media Queries */
 @media (max-width: 768px) {
     .top-header {
         flex-wrap: wrap;
