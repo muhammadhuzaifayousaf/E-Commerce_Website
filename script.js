@@ -1,4 +1,4 @@
-// Sample product data
+// Product data (You can add more products)
 const products = [
     { id: 1, name: "Redmi 9 Prime", price: 499.99, image: "https://via.placeholder.com/150", discount: 10 },
     { id: 2, name: "Refrigerator", price: 1299.99, image: "https://via.placeholder.com/150" },
@@ -10,7 +10,6 @@ const products = [
 
 let cart = [];
 
-// DOM elements
 const productsContainer = document.getElementById("products");
 const cartContainer = document.getElementById("cart");
 const cartItems = document.getElementById("cartItems");
@@ -37,7 +36,6 @@ function displayProducts(productList = products) {
         </div>
     `).join("");
 
-    // Add event listeners to "Add to Cart" buttons after displaying products
     document.querySelectorAll('.add-to-cart').forEach(button => {
         button.addEventListener('click', function() {
             const productId = parseInt(this.getAttribute('data-id'));
@@ -69,6 +67,17 @@ function removeFromCart(index) {
     cart.splice(index, 1);
     updateCart();
 }
+
+document.querySelector('.footer-newsletter form').addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = e.target.querySelector('input').value;
+    if (email) {
+        alert(`Thank you for subscribing with: ${email}`);
+        e.target.reset();
+    } else {
+        alert('Please enter a valid email address.');
+    }
+});
 
 // Toggle cart visibility
 cartButton.addEventListener("click", () => {
@@ -133,6 +142,5 @@ window.addEventListener("resize", () => {
     }
 });
 
-// Initialize
 displayProducts();
 updateCart();
