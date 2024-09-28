@@ -82,6 +82,14 @@ header {
     color: var(--primary-color);
 }
 
+nav.fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
 nav ul {
     display: flex;
     list-style-type: none;
@@ -141,7 +149,9 @@ main {
     background-size: cover;
     background-position: center;
     padding: 2rem;
-    height: 250px;
+    height: 350px;
+    display: flex;
+    flex-direction: column;
     text-align: center;
     align-items: center;
     justify-content: center;
@@ -149,11 +159,12 @@ main {
     border-radius: 15px;
     position: relative;
     overflow: hidden;
+    z-index: 1;
 }
 
 .hero h2 {
     font-size: 2.5rem;
-    margin-bottom: 1rem;
+    margin-bottom: 0.5rem;
     font-weight: 700;
     color: white;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
@@ -332,6 +343,7 @@ footer {
     overflow-y: auto;
     transition: transform 0.3s ease;
     transform: translateX(100%);
+    z-index: 100;
 }
 
 #cart.show {
