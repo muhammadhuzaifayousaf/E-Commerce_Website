@@ -1,11 +1,10 @@
 // Product data (You can add more products)
 const products = [
-    { id: 1, name: "Redmi 9 Prime", price: 499.99, image: "https://via.placeholder.com/150", discount: 10 },
-    { id: 2, name: "Refrigerator", price: 1299.99, image: "https://via.placeholder.com/150" },
-    { id: 3, name: "Apple iPhone 11", price: 699.99, image: "https://via.placeholder.com/150" },
-    { id: 4, name: "4K UHD TV", price: 899.99, image: "https://via.placeholder.com/150", discount: 15 },
-    { id: 5, name: "Smart AC", price: 599.99, image: "https://via.placeholder.com/150" },
-    { id: 6, name: "Microwave Oven", price: 249.99, image: "https://via.placeholder.com/150", discount: 5 },
+    { id: 1, name: "Apple iPhone 16 Pro", price: 1199.99, image: "images/apple-iphone-16-pro.png" },
+    { id: 2, name: "Refrigerator", price: 229.99, image: "images/refrigerator.png" },
+    { id: 3, name: "4K UHD TV", price: 439.99, image: "images/4k-uhd-tv.png", discount: 15 },
+    { id: 4, name: "Smart AC", price: 749.99, image: "images/smart-ac.png", discount: 10 },
+    { id: 5, name: "Microwave Oven", price: 169.99, image: "images/microwave-oven.png", discount: 5 },
 ];
 
 let cart = [];
@@ -23,6 +22,8 @@ const navMenu = document.querySelector("nav ul");
 const searchInput = document.querySelector(".search-bar input");
 const searchButton = document.querySelector(".search-bar button");
 const closeCartButton = document.getElementById("closeCart");
+const nav = document.querySelector('nav');
+const sticky = nav.offsetTop;
 
 // Display products
 function displayProducts(productList = products) {
@@ -140,6 +141,21 @@ window.addEventListener("resize", () => {
     if (window.innerWidth > 768) {
         navMenu.classList.remove("active");
     }
+});
+
+// Add scroll event listener
+window.addEventListener('scroll', function() {
+    if (window.pageYOffset > sticky) {
+        nav.classList.add('fixed');
+    } else {
+        nav.classList.remove('fixed');
+    }
+});
+
+// function to handle navigation
+document.querySelector('nav ul li a.active').addEventListener('click', function (event) {
+    event.preventDefault();
+    window.scrollTo({ top: 0, behavior: 'smooth' });
 });
 
 displayProducts();
